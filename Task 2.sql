@@ -1,6 +1,6 @@
-Task 2: Queries explaination
+-- Task 2: Queries explaination
 
-Query 1:
+-- Query 1:
 
 -- Create Customers table
 CREATE TABLE Customers (
@@ -12,7 +12,7 @@ CREATE TABLE Customers (
 );
 
 
-Query 2:
+-- Query 2:
 
 -- Create Suppliers table
 CREATE TABLE Suppliers (
@@ -22,7 +22,7 @@ CREATE TABLE Suppliers (
 );
 
 
-Query 3:
+-- Query 3:
 
 -- Create Products table
 CREATE TABLE Products (
@@ -36,7 +36,7 @@ CREATE TABLE Products (
 
 
 
-Query 4: 
+-- Query 4: 
 
 -- Create Orders table
 CREATE TABLE Orders (
@@ -49,7 +49,7 @@ CREATE TABLE Orders (
 );
 
 
-Query 5:
+-- Query 5:
 
 -- Create OrderDetails table
 CREATE TABLE OrderDetails (
@@ -61,7 +61,7 @@ CREATE TABLE OrderDetails (
 );
 
 
-Query 6:
+-- Query 6:
 
 -- Insert sample data into Customers
 INSERT INTO Customers (NAME, EMAIL_ID, CONTACT_NO, ADDRESS) VALUES
@@ -72,7 +72,7 @@ INSERT INTO Customers (NAME, EMAIL_ID, CONTACT_NO, ADDRESS) VALUES
 ('Charlie Black', 'charlie@example.com', '2222222222', '654 Cedar St');
 
 
-Query 7:
+-- Query 7:
 
 -- Insert sample data into Suppliers
 INSERT INTO Suppliers (CONTACT_NUMBER, SUPPLIER_NAME) VALUES
@@ -82,7 +82,7 @@ INSERT INTO Suppliers (CONTACT_NUMBER, SUPPLIER_NAME) VALUES
 
 
 
-Query 8:
+-- Query 8:
 
 -- Insert sample data into Products
 INSERT INTO Products (NAME_OF_PRODUCT, PRODUCT_DESCRIPTION, PRICE_OF_PRODUCT, STOCK_QUANTITY, SUPPLIER_ID) VALUES
@@ -94,7 +94,7 @@ INSERT INTO Products (NAME_OF_PRODUCT, PRODUCT_DESCRIPTION, PRICE_OF_PRODUCT, ST
 
 
 
-Query 9:
+-- Query 9:
 
 -- Insert sample data into Orders
 INSERT INTO Orders (CUSTOMER_ID, TOTAL_AMOUNT, SHIPPING_LOCATION, PAYMENT_MODE) VALUES
@@ -105,7 +105,7 @@ INSERT INTO Orders (CUSTOMER_ID, TOTAL_AMOUNT, SHIPPING_LOCATION, PAYMENT_MODE) 
 (4, 150.00, 'Location E', 'Cash');
 
 
-Query 10:
+-- Query 10:
 
 -- Insert sample data into OrderDetails
 INSERT INTO OrderDetails (ORDER_ID, PRODUCT_ID, QUANTITY, ORDER_PRICE) VALUES
@@ -118,7 +118,7 @@ INSERT INTO OrderDetails (ORDER_ID, PRODUCT_ID, QUANTITY, ORDER_PRICE) VALUES
 
 
 
-Query 11:
+-- Query 11:
 
 -- Retrieve Orders for a Specific Customer (CustomerID = 1 in this case)
 SELECT 
@@ -139,7 +139,7 @@ WHERE
 
 
 
-Query 12:
+-- Query 12:
 
 -- Find the Most Purchased Product
 SELECT 
@@ -158,7 +158,7 @@ LIMIT 1;
 
 
 
-Query 13:
+-- Query 13:
 
 -- Update the Stock Quantity of a Product (ProductID = 1 in this case)
 UPDATE Products
@@ -167,7 +167,7 @@ WHERE PRODUCT_ID = 1; -- Change this ID for different products
 
 
 
-Query 14:
+-- Query 14:
 
 -- Delete a Customer's Record (CustomerID = 5 in this case)
 DELETE FROM Customers
