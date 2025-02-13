@@ -1,0 +1,144 @@
+Assignment 1-Database: Task-1
+
+Entities: Entities represent real-world objects or concepts that store information in the database. Each entity has a set of attributes that define it.
+
+1. CUSTOMER Entity
+
+ Attributes:
+
+ - CUSTOMER_ID: A unique identifier for each customer. This attribute is the Primary Key of the CUSTOMER entity.
+
+ - NAME: The name of the customer (e.g., first and last name). This attribute stores textual data.
+
+ - EMAIL_ID: The email address of the customer. It is used for communication and could be used for authentication purposes.
+
+ - CONTACT_NO: The phone number of the customer. It is used for reaching out to the customer.
+
+ - ADDRESS: The physical address of the customer. This could be used for shipping purposes.
+
+2. PRODUCT Entity
+
+ Attributes:
+
+ - PRODUCT_ID: A unique identifier for each product. This attribute is the Primary Key of the PRODUCT entity.
+
+ - NAME_OF_PRODUCT: The name of the product (e.g., "Smartphone", "Laptop"). This is used to identify the product.
+
+ - PRODUCT_DESCRIPTION: A detailed description of the product, providing information about its features, specifications, and other relevant details.
+
+ - PRICE_OF_PRODUCT: The price of the product. It stores the cost at which the product is sold to customers.
+
+ - STOCK_QUANTITY: The number of units of the product available in inventory. It helps track inventory levels and whether the product is in stock.
+
+ - SUPPLIER_ID: A reference to the supplier of the product. This is a Foreign Key that links the product to the SUPPLIER entity.
+
+3. ORDER Entity
+
+ Attributes:
+
+ - ORDER_ID: A unique identifier for each order placed by a customer. This attribute is the Primary Key of the ORDER entity.
+
+ - CUSTOMER_ID: A reference to the customer who placed the order. This is a Foreign Key linking to the CUSTOMER entity and indicates which customer placed the order.
+ 
+ - ORDER_DATE: The date when the order was placed. This helps track the timing of the order.
+
+ - TOTAL_AMOUNT: The total amount for the order, which is the sum of the prices of all the products ordered.
+
+ - SHIPPING_LOCATION: The address where the order should be delivered. It can be the same as the customer’s address or a different location.
+
+ - PAYMENT_MODE: The method of payment used for the order (e.g., "Credit Card", "PayPal", "Cash on Delivery"). 
+
+4. ORDER_DETAIL Entity
+
+ Attributes:
+
+ - ORDER_DETAIL_ID: A unique identifier for each record in the order details. This is the Primary Key of the ORDER_DETAIL entity.
+
+ - ORDER_ID: A reference to the order that this detail belongs to. This is a Foreign Key that connects this entity to the ORDER entity.
+
+ - PRODUCT_ID: A reference to the product that is part of the order. This is a Foreign Key linking to the PRODUCT entity and indicating which product is being ordered.
+ 
+ - QUANTITY: The number of units of the product ordered. This helps track how many items of a particular product are included in the order.
+
+ - ORDER_PRICE: The price of the product for this specific order.
+
+5. SUPPLIER Entity
+ 
+ Attributes:
+
+ - SUPPLIER_ID: A unique identifier for each supplier. This is the Primary Key of the SUPPLIER entity.
+
+ - CONTACT_NUMBER: The phone number for contacting the supplier. It is used for communication purposes.
+
+ - SUPPLIER_NAME: The name of the supplier company or organization. This identifies the supplier in the database.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Relationships: Relationships define how entities are related to each other.
+
+1. CUSTOMER ↔ ORDER: A customer can place many orders, but each order is placed by one customer. This is a one-to-many relationship between CUSTOMER and ORDER.
+
+  - Foreign Key: CUSTOMER_ID in ORDER refers to CUSTOMER_ID in CUSTOMER.
+
+2. PRODUCT ↔ ORDER_DETAIL: An order can have many products, and a product can be part of many orders. This is a many-to-many relationship between PRODUCT and ORDER. 
+   To handle this, we use ORDER_DETAIL, which connects the two entities.
+
+  - Foreign Keys: ORDER_ID in ORDER_DETAIL refers to ORDER_ID in ORDER; PRODUCT_ID in ORDER_DETAIL refers to PRODUCT_ID in PRODUCT.
+
+3. SUPPLIER ↔ PRODUCT: A supplier can provide many products, but each product comes from one supplier. This is a one-to-many relationship between SUPPLIER and PRODUCT.
+
+  - Foreign Key: SUPPLIER_ID in PRODUCT refers to SUPPLIER_ID in SUPPLIER.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Normalization: To normalize the database schema up to the Third Normal Form (3NF), we need to follow a step-by-step approach, addressing each normal form:
+
+Step 1: First Normal Form (1NF): 1NF ensures that each column contains atomic values, meaning no multi-valued attributes or repeating groups.
+
+Entities:
+
+ - CUSTOMER: All attributes are atomic (e.g., the contact number and address are stored as individual values).
+ 
+ - PRODUCT: Similarly, all attributes are atomic.
+
+ - ORDER: All attributes are atomic.
+
+ - ORDER_DETAIL: All attributes are atomic.
+
+ - SUPPLIER: All attributes are atomic.
+
+Since each attribute contains only atomic values, the entities are already in 1NF.
+
+Step 2: Second Normal Form (2NF): 2NF ensures that each non-prime attribute (non-key attribute) is fully dependent on the primary key. We must eliminate partial dependencies.
+
+ - CUSTOMER: All attributes depend on the whole primary key (CUSTOMER_ID), so no changes are needed.
+ 
+ - PRODUCT: All attributes depend on the whole primary key (PRODUCT_ID), so no changes are needed.
+
+ - ORDER: The non-key attributes (ORDER_DATE, TOTAL_AMOUNT, SHIPPING_LOCATION, PAYMENT_MODE) all depend on the whole primary key (ORDER_ID), so no changes are needed.
+
+ - ORDER_DETAIL: The non-key attributes (QUANTITY, ORDER_PRICE) depend on the whole composite primary key (ORDER_ID, PRODUCT_ID). 
+                 There is no partial dependency, so no changes are needed.
+
+ - SUPPLIER: The non-key attributes (CONTACT_NUMBER, SUPPLIER_NAME) depend on the whole primary key (SUPPLIER_ID), so no changes are needed.
+
+Since all non-key attributes depend on the whole primary key, the schema is already in 2NF.
+
+Step 3: Third Normal Form (3NF): 3NF ensures that no transitive dependency exists, meaning no non-key attribute depends on another non-key attribute.
+
+We will examine the schema for transitive dependencies:
+
+ - CUSTOMER: There are no transitive dependencies. All attributes depend only on CUSTOMER_ID.
+
+ - PRODUCT: There are no transitive dependencies. All attributes depend only on PRODUCT_ID.
+
+ - ORDER: There are no transitive dependencies. All attributes depend only on ORDER_ID.
+
+ - ORDER_DETAIL: There are no transitive dependencies. All attributes depend only on the combination of ORDER_ID and PRODUCT_ID.
+
+ - SUPPLIER: The attributes (CONTACT_NUMBER, SUPPLIER_NAME) depend only on SUPPLIER_ID, so no changes are needed.
+
+There are no transitive dependencies, so the schema is already in 3NF.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
